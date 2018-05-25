@@ -7,8 +7,8 @@ view: donations {
     sql: ${TABLE}.Donation_ID ;;
   }
 
-  dimension: donation_amount {
-    type: number
+  measure: donation_amount {
+    type: sum
     sql: ${TABLE}.Donation_Amount ;;
   }
 

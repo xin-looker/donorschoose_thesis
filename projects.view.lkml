@@ -7,8 +7,8 @@ view: projects {
     sql: ${TABLE}.Project_ID ;;
   }
 
-  dimension: project_cost {
-    type: number
+  measure: project_cost {
+    type: sum
     sql: ${TABLE}.Project_Cost ;;
   }
 
