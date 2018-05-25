@@ -8,7 +8,7 @@ include: "*.dashboard"
 
 datagroup: xin_donorschoose_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "1 hour"
+  max_cache_age: "8760 hour"
 }
 
 persist_with: xin_donorschoose_default_datagroup
