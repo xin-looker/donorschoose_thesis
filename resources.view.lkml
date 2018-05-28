@@ -3,7 +3,7 @@ view: resources {
 
   dimension: project_id {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.Project_ID ;;
   }
 

@@ -4,6 +4,7 @@ view: donations {
   dimension: donation_id {
     primary_key: yes
     type: string
+    hidden: yes
     sql: ${TABLE}.Donation_ID ;;
   }
 
@@ -19,18 +20,19 @@ view: donations {
 
   dimension: donor_cart_sequence {
     type: number
+    hidden: yes
     sql: ${TABLE}.Donor_Cart_Sequence ;;
   }
 
   dimension: donor_id {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.Donor_ID ;;
   }
 
   dimension: project_id {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.Project_ID ;;
   }
 

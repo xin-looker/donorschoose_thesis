@@ -4,6 +4,7 @@ view: donors {
   dimension: donor_id {
     primary_key: yes
     type: string
+    hidden: yes
     sql: ${TABLE}.donor_id ;;
   }
 

@@ -4,6 +4,7 @@ view: schools {
   dimension: school_id {
     primary_key: yes
     type: string
+    hidden: yes
     sql: ${TABLE}.School_ID ;;
   }
 

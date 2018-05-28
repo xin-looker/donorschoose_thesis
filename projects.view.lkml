@@ -4,6 +4,7 @@ view: projects {
   dimension: project_id {
     primary_key: yes
     type: string
+    hidden: yes
     sql: ${TABLE}.Project_ID ;;
   }
 
@@ -84,13 +85,13 @@ view: projects {
 
   dimension: school_id {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.School_ID ;;
   }
 
   dimension: teacher_id {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.Teacher_ID ;;
   }
 
