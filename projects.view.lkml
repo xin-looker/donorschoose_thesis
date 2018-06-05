@@ -1,5 +1,5 @@
 view: projects {
-  sql_table_name: donorschoose.projects ;;
+  sql_table_name: donorschoose.projects;;
 
 #   parameter: project_cost_band{
 #     type: unquoted
