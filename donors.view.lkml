@@ -4,7 +4,8 @@ view: donors {
   dimension: donor_id {
     primary_key: yes
     type: string
-    hidden: yes
+    hidden: no
+    drill_fields: [detail*]
     sql: ${TABLE}.donor_id ;;
   }
 
@@ -31,5 +32,13 @@ view: donors {
   measure: count {
     type: count
     drill_fields: [donor_id, donations.count]
+  }
+
+  set: detail{
+    fields: [
+      donor_id,
+      schools.school_state,
+      donations.donation_amount
+    ]
   }
 }

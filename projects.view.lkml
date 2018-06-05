@@ -1,6 +1,34 @@
 view: projects {
   sql_table_name: donorschoose.projects ;;
 
+#   parameter: project_cost_band{
+#     type: unquoted
+#     allowed_value: {
+#       label: "less than 500"
+#       value: "${project_essay}"
+#     }
+#
+#     allowed_value: {
+#       label: "500 to 2000"
+#       value: "project_current_status"
+#     }
+#
+#     allowed_value: {
+#       label: "2000 to 5000"
+#       value: "project_essay"
+#     }
+#
+#     allowed_value: {
+#       label: "5000 above"
+#       value: ">5000"
+#     }
+#
+#     allowed_value: {
+#       label: "All results"
+#       value: ">0"
+#     }
+#   }
+
   dimension: project_id {
     primary_key: yes
     type: string
@@ -9,9 +37,16 @@ view: projects {
   }
 
   measure: project_cost {
-    type: sum
+    type: number
     sql: ${TABLE}.Project_Cost ;;
+    value_format: ".00"
   }
+
+#   measure: project_cost_by_band {
+#     type: count
+#     sql: ${TABLE}.{% parameter project_cost_band %} ;;
+#     value_format: ".00"
+#   }
 
   dimension: project_current_status {
     type: string
