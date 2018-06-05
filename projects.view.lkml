@@ -42,6 +42,14 @@ view: projects {
     value_format: ".00"
   }
 
+  dimension: project_cost_tiers {
+    type: tier
+    tiers: [100, 300, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000]
+    style: integer
+    sql: ${TABLE}.Project_Cost ;;
+    value_format: "$#,##0"
+  }
+
 #   measure: project_cost_by_band {
 #     type: count
 #     sql: ${TABLE}.{% parameter project_cost_band %} ;;
