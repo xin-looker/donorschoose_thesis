@@ -37,7 +37,7 @@ view: projects {
   }
 
   measure: project_cost {
-    type: number
+    type: sum
     sql: ${TABLE}.Project_Cost ;;
     value_format: ".00"
   }
