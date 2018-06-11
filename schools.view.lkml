@@ -14,7 +14,7 @@ view: schools {
   }
 
   dimension: school_county {
-    type: string
+    map_layer_name: us_counties_fips
     sql: ${TABLE}.School_County ;;
   }
 
@@ -39,7 +39,7 @@ view: schools {
   }
 
   dimension: school_state {
-    type: string
+    map_layer_name: us_states
     sql: ${TABLE}.School_State ;;
   }
 

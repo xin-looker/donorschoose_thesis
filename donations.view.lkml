@@ -11,6 +11,19 @@ view: donations {
   measure: donation_amount {
     type: sum
     sql: ${TABLE}.Donation_Amount ;;
+    value_format: "$#.##0"
+  }
+
+  measure: donation_amount_M {
+    type: sum
+    sql: ${TABLE}.Donation_Amount ;;
+    value_format: "$0.000,,\" M\""
+  }
+
+  measure: donation_amount_K {
+    type: sum
+    sql: ${TABLE}.Donation_Amount ;;
+    value_format: "$0.0,\" K\""
   }
 
   dimension: donation_included_optional_donation {
