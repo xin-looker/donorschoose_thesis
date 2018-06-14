@@ -32,7 +32,6 @@ view: projects {
   dimension: project_id {
     primary_key: yes
     type: string
-    hidden: yes
     sql: ${TABLE}.Project_ID ;;
   }
 

@@ -53,4 +53,20 @@ view: donations {
     type: count
     drill_fields: [donation_id, projects.project_id, donors.donor_id]
   }
+
+  dimension_group: donation_received_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: datetime
+    sql: ${TABLE}.Donation_Received_Date ;;
+  }
 }
