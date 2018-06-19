@@ -1,8 +1,10 @@
 view: donations_fact {
   derived_table: {
     datagroup_trigger: donation_date_datagroup
-    sql: select donor_id, extract(date from max(donation_received_date)) as latest_donation from donations group by donor_id;;
-
+    sql: select donor_id,
+    extract(date from max(donation_received_date)) as latest_donation,
+    sum(donation_amount) as lifetime_donation
+    from donations group by donor_id;;
   }
   dimension: donor_id {
     type: string
@@ -27,7 +29,24 @@ view: donations_fact {
 
   dimension: days_since_last_donation {
     type: number
-    sql:DATE_DIFF(CURRENT_DATE, ${last_donation_date}, day);;
+    sql:DATE_DIFF("2018-05-09", ${last_donation_date}, day);;
 
+  }
+
+  measure:lifetime_donation{
+    type: sum
+    sql: ${TABLE}.lifetime_donation ;;
+    value_format: "$#,##0.0"
+  }
+
+  measure: average_lifetime_donation {
+    type: number
+    sql: ${lifetime_donation}/${total_donors} ;;
+    value_format: "$#,##0.0"
+  }
+
+  measure: total_donors {
+    type: count_distinct
+    sql: ${donor_id} ;;
   }
 }
