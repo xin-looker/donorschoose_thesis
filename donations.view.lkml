@@ -4,7 +4,7 @@ view: donations {
   dimension: donation_id {
     primary_key: yes
     type: string
-    hidden: yes
+#     hidden: yes
     sql: ${TABLE}.Donation_ID ;;
   }
 

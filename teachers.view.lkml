@@ -4,7 +4,7 @@ view: teachers {
   dimension: teacher_id {
     primary_key: yes
     type: string
-    hidden: yes
+#     hidden: yes
     sql: ${TABLE}.Teacher_ID ;;
   }
 

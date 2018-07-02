@@ -2,7 +2,8 @@ view: donations_fact {
   derived_table: {
     datagroup_trigger: donation_date_datagroup
     sql: select donor_id,
-    extract(date from max(donation_received_date)) as latest_donation,
+    max(donation_received_date) as latest_donation,
+    min(donation_received_date) as first_donation,
     sum(donation_amount) as lifetime_donation
     from donations group by donor_id;;
   }
@@ -15,6 +16,7 @@ view: donations_fact {
     type: time
     sql: ${TABLE}.latest_donation ;;
     timeframes: [
+      raw,
       date,
       week,
       month,
@@ -27,26 +29,48 @@ view: donations_fact {
     datatype: date
   }
 
+  dimension_group: first_donation {
+    type: time
+    sql: ${TABLE}.first_donation ;;
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      month_num,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+  }
+# check
   dimension: days_since_last_donation {
     type: number
     sql:DATE_DIFF("2018-05-09", ${last_donation_date}, day);;
 
   }
 
-  measure:lifetime_donation{
-    type: sum
+  dimension:lifetime_donation{
+    type: number
     sql: ${TABLE}.lifetime_donation ;;
     value_format: "$#,##0.0"
   }
 
   measure: average_lifetime_donation {
-    type: number
-    sql: ${lifetime_donation}/${total_donors} ;;
+    type: average
+    sql: ${TABLE}.lifetime_donation;;
     value_format: "$#,##0.0"
   }
 
   measure: total_donors {
     type: count_distinct
     sql: ${donor_id} ;;
+  }
+
+  measure: average_days_since_last_donation {
+    type: average
+    sql: ${days_since_last_donation} ;;
   }
 }

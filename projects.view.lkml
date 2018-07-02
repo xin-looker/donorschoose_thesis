@@ -29,6 +29,7 @@ view: projects {
 #     }
 #   }
 
+
   dimension: project_id {
     primary_key: yes
     type: string
@@ -182,6 +183,21 @@ view: projects {
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: last_posted_project{
+    type: string
+    sql: max(${project_posted_raw}) ;;
+  }
+
+  dimension: project_age {
+    type: number
+    sql: DATE_DIFF("2018-05-09", ${project_posted_date}, day);;
+  }
+
+  measure: average_project_age {
+    type: average
+    sql:${project_age};;
   }
 
   # ----- Sets of fields for drilling ------
