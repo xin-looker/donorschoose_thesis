@@ -2,9 +2,9 @@ view: dynamic_view {
 
   sql_table_name:
 
-  {% if _filters == 'a' %}
+  {% if _filters == 'A' %}
   ${projects_title_a.SQL_TABLE_NAME}
-  {% elsif _filters == 'b' %}
+  {% elsif _filters == 'B' %}
   ${projects_title_b.SQL_TABLE_NAME}
   {% else %}
   ${projects_title_c.SQL_TABLE_NAME}

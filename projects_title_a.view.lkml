@@ -1,6 +1,11 @@
 view: projects_title_a {
+  # derived_table: {
+  #   sql: select * from donorschoose.projects where project_title like 'A%' ;;
+  # }
+
   derived_table: {
-    sql: select * from donorschoose.projects where project_title like 'A%' ;;
+    sql: select * from donorschoose.projects
+    where {% condition project_title %} projects.project_title {% endcondition %};;
   }
 
   dimension: project_id {

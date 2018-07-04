@@ -29,7 +29,6 @@ view: projects {
 #     }
 #   }
 
-
   dimension: project_id {
     primary_key: yes
     type: string
