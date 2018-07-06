@@ -165,13 +165,11 @@ view: projects {
 
   dimension: school_id {
     type: string
-    hidden: yes
     sql: ${TABLE}.School_ID ;;
   }
 
   dimension: teacher_id {
     type: string
-    hidden: yes
     sql: ${TABLE}.Teacher_ID ;;
   }
 
