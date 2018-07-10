@@ -24,6 +24,7 @@ persist_with: donation_date_datagroup
 #   {% endif %};;
 # }
 
+
 explore: dynamic_view {
 
   always_filter: {
