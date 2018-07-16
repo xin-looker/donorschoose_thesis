@@ -24,38 +24,6 @@ persist_with: donation_date_datagroup
 #   {% endif %};;
 # }
 
-explore: dynamic_view {
-
-  always_filter: {
-    filters: {
-      field: project_title
-      value: "b%"
-    }
-  }
-
-  join: projects_title_a {
-    type: left_outer
-    sql_on: ${projects_title_a.project_id} = ${dynamic_view.project_id} ;;
-    relationship: one_to_one
-  }
-
-  join: projects_title_b {
-    type: left_outer
-    sql_on: ${projects_title_b.project_id} = ${dynamic_view.project_id} ;;
-    relationship: one_to_one
-  }
-
-  join: projects_title_c {
-    type: left_outer
-    sql_on: ${projects_title_c.project_id} = ${dynamic_view.project_id} ;;
-    relationship: one_to_one
-  }
-}
-
-explore: projects_title_a {}
-explore: projects_title_b {}
-explore: projects_title_c {}
-
 explore: donations {
   join: projects {
     type: left_outer
