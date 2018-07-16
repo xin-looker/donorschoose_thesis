@@ -57,22 +57,6 @@ explore: donations_fact {
 
 explore: projects {
 
-  always_filter: {
-    filters: {
-      field: project_title
-      value: "B%"
-    }
-
-#     filters: {
-#       field: project_title
-#       value: "C%"
-#     }
-#
-#     filters: {
-#       field: project_title
-#       value: "D%"
-#     }
-  }
   join: schools {
     type: left_outer
     sql_on: ${projects.school_id} = ${schools.school_id} ;;
