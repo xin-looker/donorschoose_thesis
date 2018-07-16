@@ -13,17 +13,6 @@ datagroup: donation_date_datagroup {
 
 persist_with: donation_date_datagroup
 
-# explore: dynamic_view {
-#   sql_table_name:
-#   {% if projects.project_title like 'a%' %}
-#   project_title_a
-#   {% elsif projects.project_title like 'b%' %}
-#   project_title_b
-#   {% else %}
-#   project_title_c
-#   {% endif %};;
-# }
-
 explore: donations {
   join: projects {
     type: left_outer
