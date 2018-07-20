@@ -48,7 +48,7 @@ view: donations_fact {
 # check
   dimension: days_since_last_donation {
     type: number
-    sql:DATE_DIFF("2018-05-09", ${last_donation_date}, day);;
+    sql:DATE_DIFF("2018-05-02", ${last_donation_date}, day);;
 
   }
 

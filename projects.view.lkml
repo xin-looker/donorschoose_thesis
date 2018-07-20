@@ -43,7 +43,7 @@ view: projects {
 
   dimension: project_cost_tiers {
     type: tier
-    tiers: [0, 3, 100, 300, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000]
+    tiers: [0, 100, 300, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000]
     style: interval
     sql: ${TABLE}.Project_Cost;;
     value_format: "$#,##0"
@@ -182,20 +182,26 @@ view: projects {
     drill_fields: [detail*]
   }
 
-  measure: last_posted_project{
-    type: string
+  measure: last_posted_project_date{
+    type: date
     sql: max(${project_posted_raw}) ;;
+    convert_tz: no
   }
 
-  dimension: project_age {
+  measure: first_posted_project{
+    type: string
+    sql: min(${project_posted_raw}) ;;
+  }
+
+  measure: last_project_age {
     type: number
-    sql: DATE_DIFF("2018-05-09", ${project_posted_date}, day);;
+    sql: DATE_DIFF("2018-05-02", ${last_posted_project_date}, day);;
   }
 
-  measure: average_project_age {
-    type: average
-    sql:${project_age};;
-  }
+#   measure: average_project_age {
+#     type: average
+#     sql:${last_project_age};;
+#   }
 
   # ----- Sets of fields for drilling ------
   set: detail {
