@@ -193,7 +193,7 @@ view: projects {
     sql: min(${project_posted_raw}) ;;
   }
 
-  measure: last_project_age {
+  measure: last_project_days {
     type: number
     sql: DATE_DIFF("2018-05-02", ${last_posted_project_date}, day);;
   }

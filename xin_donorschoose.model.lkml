@@ -68,6 +68,12 @@ explore: projects {
     sql_on: ${projects.teacher_id} = ${teachers.teacher_id} ;;
     relationship: many_to_one
   }
+
+  join: teachers_projects_fact {
+    type: left_outer
+    sql_on: ${projects.teacher_id}= ${teachers_projects_fact.teacher_id};;
+    relationship: many_to_one
+  }
 }
 
 explore: resources {
@@ -93,3 +99,5 @@ explore: resources {
 explore: schools {}
 
 explore: teachers {}
+
+explore: teachers_projects_fact {}
