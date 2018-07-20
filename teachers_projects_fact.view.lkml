@@ -1,5 +1,6 @@
 view: teachers_projects_fact {
   derived_table: {
+    datagroup_trigger: teacher_project_date_datagroup
     sql: select teachers.teacher_id as teacher_id,
       max(projects.project_posted_date) as last_project_posted_date,
       count(distinct projects.project_id) as total_projects,
