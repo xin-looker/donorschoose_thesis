@@ -79,6 +79,18 @@ explore: projects {
     sql_on: ${projects.teacher_id}= ${teachers_projects_fact.teacher_id};;
     relationship: many_to_one
   }
+
+  join: donations_projects_fact {
+    type: left_outer
+    sql_on: ${projects.project_id} = ${donations_projects_fact.project_id} ;;
+    relationship: one_to_one
+  }
+
+  join: donations {
+    type: left_outer
+    sql_on: ${projects.project_id} = ${donations.project_id} ;;
+    relationship: one_to_many
+  }
 }
 
 explore: resources {
@@ -97,6 +109,14 @@ explore: resources {
   join: teachers {
     type: left_outer
     sql_on: ${projects.teacher_id} = ${teachers.teacher_id} ;;
+    relationship: many_to_one
+  }
+}
+
+explore: teachers_retention_fact {
+  join: teachers {
+    type: left_outer
+    sql_on: ${teachers_retention_fact.teachers_teacher_id} = ${teachers.teacher_id} ;;
     relationship: many_to_one
   }
 }

@@ -29,6 +29,8 @@ view: projects {
 #     }
 #   }
 
+  parameter: project {}
+
   dimension: project_id {
     primary_key: yes
     type: string
@@ -137,6 +139,11 @@ view: projects {
     sql: ${TABLE}.Project_Posted_Date ;;
   }
 
+  dimension: distinct_project_posted_month {
+    type: date
+    sql: distinct(${project_posted_month}) ;;
+  }
+
   dimension: project_resource_category {
     type: string
     sql: ${TABLE}.Project_Resource_Category ;;
@@ -197,6 +204,7 @@ view: projects {
     type: number
     sql: DATE_DIFF("2018-05-02", ${last_posted_project_date}, day);;
   }
+
 
 #   measure: average_project_age {
 #     type: average

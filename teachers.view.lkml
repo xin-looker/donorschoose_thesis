@@ -36,7 +36,7 @@ view: teachers {
   # Needs to be reviewed, the matrix should be based on the average resolution days
   dimension: new_teacher{
     type: yesno
-    sql: DATE_DIFF('2018-05-02',${teacher_first_project_posted_date}, day) < 60;;
+    sql: DATE_DIFF('2018-05-02',${teacher_first_project_posted_date}, day) < 90;;
   }
 
 

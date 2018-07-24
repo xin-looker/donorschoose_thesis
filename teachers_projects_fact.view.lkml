@@ -6,8 +6,8 @@ view: teachers_projects_fact {
       count(distinct projects.project_id) as total_projects,
       sum(donations.donation_amount) as total_raised_donation
       from teachers
-      join projects on projects.teacher_id = teachers.teacher_id
-      join donations on donations.project_id = projects.project_id
+      left join projects on projects.teacher_id = teachers.teacher_id
+      left join donations on donations.project_id = projects.project_id
       group by 1;;
   }
 
@@ -21,9 +21,23 @@ view: teachers_projects_fact {
     sql: ${TABLE}.teacher_id ;;
   }
 
-  dimension: last_project_posted_date {
-    type: date
+  dimension_group: last_project_posted_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      month_name,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.last_project_posted_date ;;
+  }
+
+  dimension: days_since_last_post{
+    type: number
+    sql: DATE_DIFF("2018-05-02", ${last_project_posted_date_date}, day) ;;
   }
 
   dimension: total_projects {
@@ -36,7 +50,12 @@ view: teachers_projects_fact {
     sql: ${TABLE}.total_raised_donation ;;
   }
 
+  measure: average_raised_donation {
+    type: average
+    sql: ${total_raised_donation} ;;
+  }
+
   set: detail {
-    fields: [teacher_id, last_project_posted_date, total_projects, total_raised_donation]
+    fields: [teacher_id, last_project_posted_date_date, total_projects, total_raised_donation]
   }
 }

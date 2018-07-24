@@ -49,7 +49,6 @@ view: donations_fact {
   dimension: days_since_last_donation {
     type: number
     sql:DATE_DIFF("2018-05-02", ${last_donation_date}, day);;
-
   }
 
   dimension:lifetime_donation{
