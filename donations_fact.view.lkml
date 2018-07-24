@@ -76,6 +76,7 @@ view: donations_fact {
   measure: average_days_since_last_donation {
     type: average
     sql: ${days_since_last_donation} ;;
+    value_format: "0.0"
   }
 
   dimension: total_projects_donated {
@@ -96,6 +97,7 @@ view: donations_fact {
   measure: average_num_donations {
     type: average
     sql: ${total_num_donations} ;;
+    value_format: "0.0"
   }
 
   measure: average_num_projects_donated {
