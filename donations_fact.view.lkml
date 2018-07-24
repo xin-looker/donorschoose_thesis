@@ -4,8 +4,13 @@ view: donations_fact {
     sql: select donor_id,
     max(donation_received_date) as latest_donation,
     min(donation_received_date) as first_donation,
-    sum(donation_amount) as lifetime_donation
-    from donations group by donor_id;;
+    sum(donation_amount) as lifetime_donation,
+    count(distinct donation_id) as total_num_donations,
+    count(distinct projects.project_id) as total_projects_donated,
+    if(count(distinct donation_id) = count(distinct projects.project_id), true, false) as eq
+    from donations
+    left join projects on donations.project_id = projects.project_id
+    group by 1;;
   }
   dimension: donor_id {
     type: string
@@ -71,5 +76,30 @@ view: donations_fact {
   measure: average_days_since_last_donation {
     type: average
     sql: ${days_since_last_donation} ;;
+  }
+
+  dimension: total_projects_donated {
+    type: number
+    sql: ${TABLE}.total_projects_donated ;;
+  }
+
+  dimension: total_num_donations {
+    type: number
+    sql: ${TABLE}.total_num_donations ;;
+  }
+
+  dimension: multiple_donation_to_one_project_yesno {
+    type: yesno
+    sql: ${TABLE}.eq ;;
+  }
+
+  measure: average_num_donations {
+    type: average
+    sql: ${total_num_donations} ;;
+  }
+
+  measure: average_num_projects_donated {
+    type: average
+    sql: ${total_projects_donated} ;;
   }
 }
