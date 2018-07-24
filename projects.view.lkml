@@ -202,7 +202,7 @@ view: projects {
 
   measure: last_project_days {
     type: number
-    sql: DATE_DIFF("2018-05-02", ${last_posted_project_date}, day);;
+    sql: DATE_DIFF("2018-05-09", ${last_posted_project_date}, day);;
   }
 
 
