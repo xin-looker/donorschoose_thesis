@@ -44,7 +44,7 @@ view: projects {
 
   dimension: project_cost_tiers {
     type: tier
-    tiers: [0, 100, 300, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000]
+    tiers: [0, 100, 300, 500, 1000, 2000, 3500, 5000, 10000, 20000, 30000, 40000, 50000, 75000, 100000, 200000]
     style: integer
     sql: ${TABLE}.Project_Cost;;
     value_format: "$#,##0"
@@ -185,7 +185,7 @@ view: projects {
 
   dimension: fully_funded_days_tiers {
     type: tier
-    tiers: [0, 10, 20, 30, 45, 60, 75, 90, 120, 150, 180, 210, 240]
+    tiers: [0, 10, 20, 30, 45, 60, 75, 90, 105, 120, 150, 180, 210, 240]
     style: integer
     sql: ${dimen_days_project_fully_funded} ;;
 
@@ -225,13 +225,15 @@ view: projects {
     sql: case when ${project_current_status} = {% parameter project_status_parameter %}
           then ${project_id}
           end;;
+    label: "Fully Funded Project Count"
   }
 
-  measure: project_status_percentage {
+  measure: projects_status_percentage {
     type: number
     sql: ${project_status_count}/${count} ;;
     value_format_name: percent_1
     drill_fields: [detail*]
+    label: "Fully Funded Project Percentage"
   }
 
   measure: days_project_fully_funded {

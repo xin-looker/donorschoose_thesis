@@ -67,17 +67,20 @@ view: donations_fact {
     type: average
     sql: ${TABLE}.lifetime_donation;;
     value_format: "$#,##0.0"
+    drill_fields: [detail*]
   }
 
   measure: total_donors {
     type: count_distinct
     sql: ${donor_id} ;;
+    drill_fields: [detail*]
   }
 
   measure: average_days_since_last_donation {
     type: average
     sql: ${days_since_last_donation} ;;
     value_format: "0.0"
+    drill_fields: [detail*]
   }
 
   dimension: total_projects_donated {
@@ -99,10 +102,21 @@ view: donations_fact {
     type: average
     sql: ${total_num_donations} ;;
     value_format: "0.0"
+    drill_fields: [detail*]
   }
 
   measure: average_num_projects_donated {
     type: average
     sql: ${total_projects_donated} ;;
+    drill_fields: [detail*]
+  }
+
+  set: detail{
+    fields: [
+      donor_id,
+      donors.state,
+      donations.donation_amount,
+      donations.count
+    ]
   }
 }

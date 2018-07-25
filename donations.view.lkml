@@ -12,18 +12,21 @@ view: donations {
     type: sum
     sql: ${TABLE}.Donation_Amount ;;
     value_format: "$#.##0"
+    drill_fields: [detail*]
   }
 
   measure: donation_amount_M {
     type: sum
     sql: ${TABLE}.Donation_Amount ;;
     value_format: "$0.000,,\" M\""
+    drill_fields: [detail*]
   }
 
   measure: donation_amount_K {
     type: sum
     sql: ${TABLE}.Donation_Amount ;;
     value_format: "$0.0,\" K\""
+    drill_fields: [detail*]
   }
 
   dimension: donation_included_optional_donation {
@@ -51,7 +54,7 @@ view: donations {
 
   measure: count {
     type: count
-    drill_fields: [donation_id, projects.project_id, donors.donor_id]
+    drill_fields: [detail*]
   }
 
   dimension_group: donation_received_date {
@@ -68,5 +71,14 @@ view: donations {
     convert_tz: no
     datatype: datetime
     sql: ${TABLE}.Donation_Received_Date ;;
+  }
+
+  set: detail{
+    fields: [
+      donor_id,
+      donors.state,
+      donations.donation_amount,
+      donations.count
+    ]
   }
 }
