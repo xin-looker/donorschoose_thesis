@@ -31,14 +31,16 @@ view: donors {
 
   measure: count {
     type: count
-    drill_fields: [donor_id, donations.count]
+    drill_fields: [detail*]
   }
 
   set: detail{
     fields: [
       donor_id,
+      donor_is_teacher,
       schools.school_state,
-      donations.donation_amount
+      donations.donation_amount,
+      donations.count
     ]
   }
 }

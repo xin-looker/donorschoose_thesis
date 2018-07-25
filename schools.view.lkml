@@ -32,8 +32,8 @@ view: schools {
     sql: ${TABLE}.School_Name ;;
   }
 
-  dimension: school_percentage_free_lunch {
-    type: number
+  measure: school_percentage_free_lunch {
+    type: average
     sql: ${TABLE}.School_Percentage_Free_Lunch ;;
   }
 

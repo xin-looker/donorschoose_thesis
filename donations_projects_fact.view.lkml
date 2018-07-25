@@ -59,6 +59,7 @@ ORDER BY 4 DESC
       type: average
       sql: ${same_state_donors_count}/${donors_count} ;;
       value_format_name: percent_1
+      drill_fields:[detail*]
     }
 
     set: detail {

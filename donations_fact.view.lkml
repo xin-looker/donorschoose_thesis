@@ -7,6 +7,7 @@ view: donations_fact {
     sum(donation_amount) as lifetime_donation,
     count(distinct donation_id) as total_num_donations,
     count(distinct projects.project_id) as total_projects_donated,
+    --wrong defination
     if(count(distinct donation_id) = count(distinct projects.project_id), true, false) as eq
     from donations
     left join projects on donations.project_id = projects.project_id

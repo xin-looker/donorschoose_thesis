@@ -1,7 +1,7 @@
 # Donorschoose Thesis Write Up
 
 ## **Where I got the data**
-The dataset in this analysis was aquired via Kaggle [Data Science For Good](https://www.kaggle.com/donorschoose/io/home)'s challenge. This is a transactional dataset that includes all the record of Donorschoose platform users, projects and donations.
+The dataset in this analysis is from Kaggle [Data Science For Good](https://www.kaggle.com/donorschoose/io/home)'s challenge. This is a transactional dataset which includes all the record of Donorschoose platform users, projects and donations.
 
 **Background about Donorschoose**
 Founded in 2000 by a Bronx history teacher, DonorsChoose.org has raised $685 million for America's classrooms. Teachers at three-quarters of all the public schools in the U.S. have come to DonorsChoose.org to request what their students need, making DonorsChoose.org the leading platform for supporting public education.
@@ -48,8 +48,6 @@ Also, a lot of projects fields are long text and articles, which can be further 
 
 _________________________
 
-## Problem to solve:
-Motivate existing donors to donate again
 
 # Assumptions
 1. Return donors tend to donote again, the more times they donate, they more likely they will return

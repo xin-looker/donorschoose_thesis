@@ -18,6 +18,8 @@ view: teachers_projects_fact {
 
   dimension: teacher_id {
     type: string
+    primary_key: yes
+    hidden: yes
     sql: ${TABLE}.teacher_id ;;
   }
 
@@ -35,9 +37,11 @@ view: teachers_projects_fact {
     sql: ${TABLE}.last_project_posted_date ;;
   }
 
-  dimension: days_since_last_post{
-    type: number
-    sql: DATE_DIFF("2018-05-02", ${last_project_posted_date_date}, day) ;;
+  measure: days_since_last_post{
+    type: average
+    sql: DATE_DIFF("2018-05-08", ${last_project_posted_date_date}, day) ;;
+    value_format_name: decimal_1
+    drill_fields: [detail*]
   }
 
   dimension: total_projects {
@@ -48,11 +52,14 @@ view: teachers_projects_fact {
   dimension: total_raised_donation {
     type: number
     sql: ${TABLE}.total_raised_donation ;;
+    value_format_name: decimal_1
   }
 
   measure: average_raised_donation {
     type: average
     sql: ${total_raised_donation} ;;
+    value_format_name: decimal_1
+    drill_fields: [detail*]
   }
 
   set: detail {

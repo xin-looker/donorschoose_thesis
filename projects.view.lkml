@@ -39,12 +39,13 @@ view: projects {
     type: sum
     sql: ${TABLE}.Project_Cost ;;
     value_format: ".00"
+    drill_fields: [detail*]
   }
 
   dimension: project_cost_tiers {
     type: tier
     tiers: [0, 100, 300, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000]
-    style: interval
+    style: integer
     sql: ${TABLE}.Project_Cost;;
     value_format: "$#,##0"
   }
@@ -182,6 +183,14 @@ view: projects {
     sql: ${TABLE}.Teacher_Project_Posted_Sequence ;;
   }
 
+  dimension: fully_funded_days_tiers {
+    type: tier
+    tiers: [0, 10, 20, 30, 45, 60, 75, 90, 120, 150, 180, 210, 240]
+    style: integer
+    sql: ${dimen_days_project_fully_funded} ;;
+
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
@@ -191,16 +200,19 @@ view: projects {
     type: date
     sql: max(${project_posted_raw}) ;;
     convert_tz: no
+    drill_fields: [detail*]
   }
 
   measure: first_posted_project{
     type: string
     sql: min(${project_posted_raw}) ;;
+    drill_fields: [detail*]
   }
 
   measure: last_project_days {
     type: number
     sql: DATE_DIFF("2018-05-09", ${last_posted_project_date}, day);;
+    drill_fields: [detail*]
   }
 
   filter: project_status_parameter {
@@ -219,6 +231,20 @@ view: projects {
     type: number
     sql: ${project_status_count}/${count} ;;
     value_format_name: percent_1
+    drill_fields: [detail*]
+  }
+
+  measure: days_project_fully_funded {
+    type: average
+    sql: date_diff(${project_fully_funded_date}, ${project_posted_date}, day) ;;
+    value_format_name: decimal_1
+    drill_fields: [detail*]
+  }
+
+  dimension: dimen_days_project_fully_funded {
+    type: number
+    sql: date_diff(${project_fully_funded_date}, ${project_posted_date}, day) ;;
+    value_format_name: decimal_1
   }
 
 
@@ -232,6 +258,9 @@ view: projects {
     fields: [
       project_id,
       project_title,
+      project_posted_date,
+      project_current_status,
+      project_fully_funded_date,
       donations.count,
       resources.count,
       project_cost,
