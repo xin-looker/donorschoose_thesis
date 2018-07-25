@@ -47,6 +47,12 @@ explore: donations {
     sql_on: ${donations.donor_id} = ${donations_fact.donor_id} ;;
     relationship: many_to_one
   }
+
+  join: donations_projects_fact {
+    type: left_outer
+    sql_on: ${donations.project_id}= ${donations_projects_fact.project_id} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: donors {

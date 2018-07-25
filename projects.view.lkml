@@ -1,35 +1,33 @@
 view: projects {
   sql_table_name: donorschoose.projects;;
 
-#   parameter: project_cost_band{
-#     type: unquoted
-#     allowed_value: {
-#       label: "less than 500"
-#       value: "${project_essay}"
-#     }
-#
-#     allowed_value: {
-#       label: "500 to 2000"
-#       value: "project_current_status"
-#     }
-#
-#     allowed_value: {
-#       label: "2000 to 5000"
-#       value: "project_essay"
-#     }
-#
-#     allowed_value: {
-#       label: "5000 above"
-#       value: ">5000"
-#     }
-#
-#     allowed_value: {
-#       label: "All results"
-#       value: ">0"
-#     }
-#   }
+  # parameter: project_cost_band{
+  #   type: unquoted
+  #   allowed_value: {
+  #     label: "less than 500"
+  #     value: "<500"
+  #   }
 
-  parameter: project {}
+  #   allowed_value: {
+  #     label: "500 to 2000"
+  #     value: ">=500 and <2000"
+  #   }
+
+  #   allowed_value: {
+  #     label: "2000 to 5000"
+  #     value: ">=2000 and <5000"
+  #   }
+
+  #   allowed_value: {
+  #     label: "5000 above"
+  #     value: ">5000"
+  #   }
+
+  #   allowed_value: {
+  #     label: "All results"
+  #     value: ">0"
+  #   }
+  # }
 
   dimension: project_id {
     primary_key: yes
@@ -203,6 +201,24 @@ view: projects {
   measure: last_project_days {
     type: number
     sql: DATE_DIFF("2018-05-09", ${last_posted_project_date}, day);;
+  }
+
+  filter: project_status_parameter {
+    type: string
+    suggest_dimension: project_current_status
+  }
+
+  measure: project_status_count {
+    type: count_distinct
+    sql: case when ${project_current_status} = {% parameter project_status_parameter %}
+          then ${project_id}
+          end;;
+  }
+
+  measure: project_status_percentage {
+    type: number
+    sql: ${project_status_count}/${count} ;;
+    value_format_name: percent_1
   }
 
 

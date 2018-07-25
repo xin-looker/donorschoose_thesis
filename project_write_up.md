@@ -13,7 +13,7 @@ The aim of this project is to get an insight of the current and past donors and 
 
 ## **What questions I want to answer with this dataset**
 
-1. Who are the donors? Demographics analysis: age, gender, location
+1. Who are the donors?
  * Who are the top donors in terms of value & times?
  * Who are once off donors? What's their donated value?
  * What's donors' retention?
