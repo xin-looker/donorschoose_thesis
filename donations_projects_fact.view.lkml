@@ -35,11 +35,13 @@ ORDER BY 4 DESC
     dimension: project_id {
       type: string
       primary_key: yes
+      hidden: yes
       sql: ${TABLE}.project_id ;;
     }
 
     dimension: school_state {
       type: string
+      hidden: yes
       sql: ${TABLE}.school_state ;;
     }
 
