@@ -1,6 +1,8 @@
 view: donations_projects_fact {
     derived_table: {
-      sql: WITH donations_projects_fact AS (SELECT
+      sql:
+      --
+      WITH donations_projects_fact AS (SELECT
         projects.Project_ID  AS project_id,
         schools.School_State  AS schools_school_state,
         COUNT(DISTINCT donors.donor_id ) AS donors_count

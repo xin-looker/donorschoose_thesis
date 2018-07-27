@@ -8,12 +8,12 @@ include: "*.view"
 
 datagroup: donation_date_datagroup {
   sql_trigger: SELECT MAX(donations_received_date) FROM donations;;
-  max_cache_age: "24 hour"
+  max_cache_age: "0 hour"
 }
 
 datagroup: teacher_project_date_datagroup {
   sql_trigger: SELECT count(teacher_id) FROM teachers;;
-  max_cache_age: "24 hour"
+  max_cache_age: "0 hour"
 }
 
 persist_with: donation_date_datagroup
@@ -53,6 +53,12 @@ explore: donations {
     sql_on: ${donations.project_id}= ${donations_projects_fact.project_id} ;;
     relationship: many_to_one
   }
+
+  join: us_population {
+    type: left_outer
+    sql_on: ${schools.school_state}=${us_population.state};;
+    relationship: many_to_one
+  }
 }
 
 explore: donors {
@@ -60,6 +66,12 @@ explore: donors {
     type: left_outer
     sql_on: ${donors.donor_id}=${donations_fact.donor_id} ;;
     relationship: one_to_one
+  }
+
+  join: us_population {
+    type: left_outer
+    sql_on: ${donors.donor_state}=${us_population.state} ;;
+    relationship: many_to_one
   }
 }
 
@@ -97,6 +109,12 @@ explore: projects {
     sql_on: ${projects.project_id} = ${donations.project_id} ;;
     relationship: one_to_many
   }
+
+  join: us_population {
+    type: left_outer
+    sql_on: ${schools.school_state}=${us_population.state} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: resources {
@@ -117,6 +135,12 @@ explore: resources {
     sql_on: ${projects.teacher_id} = ${teachers.teacher_id} ;;
     relationship: many_to_one
   }
+
+  join: us_population {
+    type: left_outer
+    sql_on: ${schools.school_state}=${us_population.state} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: teachers_retention_fact {
@@ -127,8 +151,20 @@ explore: teachers_retention_fact {
   }
 }
 
-explore: schools {}
+explore: schools {
+  join: us_population {
+    type: left_outer
+    sql_on: ${schools.school_state}=${us_population.state} ;;
+    relationship: many_to_one
+  }
+}
 
 explore: teachers {}
 
 explore: teachers_projects_fact {}
+
+explore: uspop {
+  hidden: yes
+}
+
+explore: us_population {}
