@@ -63,6 +63,6 @@ view: teachers_projects_fact {
   }
 
   set: detail {
-    fields: [teacher_id, last_project_posted_date_date, total_projects, total_raised_donation]
+    fields: [projects.project_id, projects.project_type, projects.project_resource_category, schools.school_state, schools.school_metro_type, teacher_id, total_projects, total_raised_donation]
   }
 }

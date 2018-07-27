@@ -65,6 +65,6 @@ ORDER BY 4 DESC
     }
 
     set: detail {
-      fields: [project_id, school_state, same_state_donors_count, donors_count]
+      fields: [project_id, school_state, projects.project_type ,same_state_donor_percentage, donors_count, donations.donation_amount]
     }
   }

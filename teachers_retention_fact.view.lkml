@@ -88,6 +88,7 @@ view: teachers_retention_fact {
       field: projects_count
       value: ">=1"
     }
+    drill_fields: [detail*]
   }
 
   measure: total_very_active_teachers {
@@ -120,6 +121,6 @@ view: teachers_retention_fact {
   }
 
   set: detail {
-    fields: [teachers_teacher_id, teachers_teacher_first_project_posted_date_date, projects_project_posted_date_date, projects_count, donations_donation_amount]
+    fields: [teachers_teacher_id, donations_donation_amount]
   }
 }

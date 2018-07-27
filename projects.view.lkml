@@ -261,12 +261,15 @@ view: projects {
       project_id,
       project_title,
       project_posted_date,
-      project_current_status,
       project_fully_funded_date,
+      project_resource_category,
+      project_subject_category_tree,
+      project_current_status,
       donations.count,
       resources.count,
       project_cost,
-      donations.donations_amount
+      donations.donations_amount,
+      school_id
     ]
   }
 }

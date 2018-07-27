@@ -36,6 +36,8 @@ view: donors {
 
   set: detail{
     fields: [
+      projects.project_id,
+      projects.project_type, projects.project_resource_category,
       donor_id,
       donor_is_teacher,
       schools.school_state,
