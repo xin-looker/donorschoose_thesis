@@ -4,7 +4,7 @@ connection: "xin"
 include: "*.view"
 
 # include all the dashboards
-# include: "*.dashboard.lkml"
+# include: "*.dashboard.lookml"
 
 datagroup: donation_date_datagroup {
   sql_trigger: SELECT MAX(donations_received_date) FROM donations;;
