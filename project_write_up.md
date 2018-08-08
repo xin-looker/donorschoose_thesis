@@ -20,7 +20,7 @@ The aim of this project is to get an insight of the current and past donors and 
 2. What projects that donors are interested in?
  * Categorising all projects based on type, location and performances;
  * Are donors more interested in projects/schools in their state/city?
- * Find the most donated projects, cost/donation, type of projects,location etc.;
+ * Find the most donated projects, cost band, type of projects, location etc.;
 3. Teachers
   * How are the teachers?
   * What's teachers' retention?

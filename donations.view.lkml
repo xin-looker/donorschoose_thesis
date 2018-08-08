@@ -10,9 +10,11 @@ view: donations {
 
   measure: donation_amount {
     type: sum
-    sql: ${TABLE}.Donation_Amount ;;
-    value_format: "$#.##0"
+    sql: ${TABLE}.Donation_Amount;;
+    # value_format: "$#.##0"
+    value_format_name: decimal_1
     drill_fields: [detail*]
+    html: <font color="darkgreen">{{rendered_value}}</font> <font color="red">WTE</font>;;
   }
 
   measure: donation_amount_M {
@@ -61,6 +63,8 @@ view: donations {
     type: time
     timeframes: [
       raw,
+      minute,
+      hour,
       date,
       week,
       month,

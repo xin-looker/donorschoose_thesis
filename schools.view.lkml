@@ -40,6 +40,10 @@ view: schools {
   dimension: school_state {
     map_layer_name: us_states
     sql: ${TABLE}.School_State ;;
+      link: {
+      label: "State"
+      url: "/dashboards/173?State=&filter_config=%7B%22State%22:%5B%7B%22type%22:%22%3D%22,%22values%22:%5B%7B%22constant%22:%22{{value}}%22%7D,%7B%7D%5D,%22id%22:11%7D%5D%7D"
+    }
   }
 
   dimension: school_zip {
