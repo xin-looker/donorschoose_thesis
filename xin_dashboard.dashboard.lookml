@@ -1,4 +1,4 @@
-- dashboard: xin_dashboard
+- dashboard: xin_dashboard_x
   title: Donorschoose -  Xin's Thesis
   layout: newspaper
   load_configuration: wait
@@ -1591,7 +1591,7 @@
     col: 0
     width: 24
     height: 4
-  - name:
+  - name: XX1
     type: text
     body_text: |-
       + The majority of the donors are concentrated in east and west coast
@@ -1682,7 +1682,7 @@
     col: 16
     width: 8
     height: 7
-  - name:
+  - name: XX2
     type: text
     body_text: |-
       + Around 70% of the projects get fully funded in the past 3 years
