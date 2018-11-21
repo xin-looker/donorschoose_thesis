@@ -7,7 +7,7 @@ include: "pdt_test.view"
 # include all the dashboards
  include: "*.dashboard"
 
-datagroup: donation_date_datagroup {
+datagroup: donation_date_datagroup1 {
   sql_trigger: SELECT MAX(Donations_Received_Date) FROM donations;;
   max_cache_age: "24 hour"
 }
