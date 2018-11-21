@@ -1,8 +1,11 @@
 connection: "xin"
 
+include: "test_datagroup.model.lkml"
+
 # include all the views
 include: "donations.view"
 include: "pdt_test.view"
+include: "pdt_test_extended.view"
 
 # include all the dashboards
  include: "*.dashboard"
@@ -12,16 +15,19 @@ datagroup: donation_date_datagroup1 {
   max_cache_age: "24 hour"
 }
 
-datagroup: teacher_project_date_datagroup {
-  sql_trigger: SELECT count(teacher_id) FROM teachers;;
-  max_cache_age: "24 hour"
-}
+# datagroup: teacher_project_date_datagroup {
+#   sql_trigger: SELECT count(teacher_id) FROM teachers;;
+#   max_cache_age: "24 hour"
+# }
 
 persist_with: donation_date_datagroup
 
 explore: pdt_test {}
 
 explore: donations {}
+
+explore: pdt_test_extended {
+}
 #   join: projects {
 #     type: left_outer
 #     sql_on: ${donations.project_id} = ${projects.project_id} ;;
