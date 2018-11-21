@@ -28,7 +28,7 @@ explore: donations {
 
   join: pdt_test {
     type: left_outer
-    sql_on: ${donations.donation_included_optional_donation}=${pdt_test.donations_donation_included_optional_donation} ;;
+    sql_on: cast(${donations.donation_included_optional_donation} as string)=${pdt_test.donations_donation_included_optional_donation} ;;
     relationship: many_to_one
   }
 }
