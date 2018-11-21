@@ -7,7 +7,7 @@ include: "*.view"
  include: "*.dashboard"
 
 datagroup: donation_date_datagroup {
-  sql_trigger: SELECT MAX(donations_received_date) FROM donations;;
+  sql_trigger: SELECT MAX(Donations_Received_Date) FROM donations;;
   max_cache_age: "24 hour"
 }
 
@@ -17,6 +17,8 @@ datagroup: teacher_project_date_datagroup {
 }
 
 persist_with: donation_date_datagroup
+
+explore: pdt_test {}
 
 explore: donations {
   join: projects {

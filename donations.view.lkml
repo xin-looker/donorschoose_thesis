@@ -14,7 +14,7 @@ view: donations {
     # value_format: "$#.##0"
     value_format_name: decimal_1
     drill_fields: [detail*]
-    html: <font color="darkgreen">{{rendered_value}}</font> <font color="red">WTE</font>;;
+    # html: <font color="darkgreen">{{rendered_value}}</font> <font color="red">WTE</font>;;
   }
 
   measure: donation_amount_M {
@@ -57,6 +57,11 @@ view: donations {
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: donation_percentile {
+    type: number
+    sql: NTILE(20) OVER ${donation_amount} (ORDER BY ${donation_amount});;
   }
 
   dimension_group: donation_received_date {
