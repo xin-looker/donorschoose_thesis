@@ -1,6 +1,6 @@
 connection: "xin"
 
-include: "test_datagroup.model.lkml"
+include: "test_datagroup.base.lkml"
 
 # include all the views
 include: "donations.view"

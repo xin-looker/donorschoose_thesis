@@ -1,5 +1,3 @@
-connection: "xin"
-
 # include all the views
 include: "donations.view"
 include: "pdt_test.view"

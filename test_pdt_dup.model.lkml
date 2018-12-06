@@ -6,7 +6,7 @@ include: "pdt_test.view"
 
 # include all the dashboards
 include: "*.dashboard"
-include: "test_datagroup.model.lkml"
+include: "test_datagroup.base.lkml"
 
 # datagroup: donation_date_datagroup {
 #   sql_trigger: SELECT MAX(donations_received_date) FROM donations;;
